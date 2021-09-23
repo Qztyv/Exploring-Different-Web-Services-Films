@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory>
+ <!-- 
+ - For Testing cloud db locally, start a proxy (can be downloaded from below link):
+ https://cloud.google.com/sql/docs/mysql/sql-proxy
+ 
+ For Mac users, refer to above link and other resources if below does not work - this is tested on Windows.
+ 
+ To start the proxy, navigate in the command prompt to the folder, and use this command:
+ cloud_sql_proxy -instances=INSTANCE_CONNECTION_NAME=tcp:PORT_NUMBER
+ Like so:
+ cloud_sql_proxy -instances=democloudproject-296016:europe-west1:enterprise-assignment-db=tcp:3306
+ 
+ - Switch out the connection urls to this if it is not already:
+ <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306</property>
+ 
+ - And comment out the socketFactory and cloudSqlInstance
+ 
+ - When deploying for production, use the below property, that is: "jdbc:mysql:///" as the url
+ 
+  <property name="hibernate.connection.url">jdbc:mysql:///</property>
+    
+ - and don't forget to uncomment the socketFactory, cloudSqlInstance
+  
+ - It will not work locally anymore with this config, but it will when deployed to the google server - this is related to the security
+ - (If testing locally a proxy must be used for connections to a cloud db) 
+ -->
+ <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306</property>
+ <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+ <property name="hibernate.connection.username">root</property>
+ <property name="hibernate.connection.password">admin</property>
+ <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+ <property name="hibernate.default_schema">filmdb</property>
+ <!-- 
+  <property name="hibernate.connection.socketFactory">com.google.cloud.sql.mysql.SocketFactory</property>
+ <property name="hibernate.connection.cloudSqlInstance">democloudproject-296016:europe-west1:enterprise-assignment-db</property>
+  -->
+ </session-factory>
+</hibernate-configuration>

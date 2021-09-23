@@ -1,0 +1,11 @@
+#alert-div {
+	display: none;
+}
+#master-container {
+	width: 100%;
+	text-align: center;
+}
+#controls {
+ 	width: 30%;
+ 	text-align: initial;
+}
